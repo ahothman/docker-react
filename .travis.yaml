@@ -1,14 +1,9 @@
 language: node_js
 node_js:
   - "8"
-
-sudo: required
-
-services:
-  - docker
-
-before-install:
-  - docker build  -f Dockerfile.dev -t ahothman/docker-react .
-
+  - "7"
+  - "6"
 script:
-  - docker run -e CI=true ahothman/docker-react npm run test -- --coverage
+  - npm test
+after_success:
+  - npm run coveralls
